@@ -131,7 +131,7 @@ export default function FlippedLifeGrid({ person, deadlines, onAddDeadline, onDe
     setDeadlineLabel('');
   };
 
-  const grid: (typeof weeks)[][] = Array.from({ length: YEARS }, (_, yearIndex) => {
+  const grid: (typeof weeks[0])[][] = Array.from({ length: YEARS }, (_, yearIndex) => {
     return Array.from({ length: WEEKS_PER_YEAR }, (_, weekIndex) => {
       const weekNumber = yearIndex * WEEKS_PER_YEAR + weekIndex;
       return weeks[weekNumber] || weeks[weeks.length - 1];
