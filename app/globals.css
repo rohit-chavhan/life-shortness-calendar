@@ -1,26 +1,108 @@
 @import "tailwindcss";
 
+/* Light mode (default) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --bg-page: 249 250 251; /* slate-50 */
+  --bg-panel: 255 255 255; /* white */
+  --bg-panel-alt: 248 250 252; /* slate-50 */
+  --border-panel: 226 232 240; /* slate-200 */
+  --border-subtle: 203 213 225; /* slate-300 */
+  
+  --text-primary: 15 23 42; /* slate-900 */
+  --text-secondary: 71 85 105; /* slate-600 */
+  --text-tertiary: 148 163 184; /* slate-400 */
+  
+  --week-lived: 203 213 225; /* slate-300 */
+  --week-remaining: 245 158 11; /* amber-500 */
+  --week-current-ring: 15 23 42; /* slate-900 */
+  
+  --number-primary: 217 119 6; /* amber-600 */
+  --number-secondary: 245 158 11; /* amber-500 */
+  
+  --line-expectancy: 239 68 68; /* red-500 */
+  
+  --input-bg: 255 255 255; /* white */
+  --input-border: 148 163 184; /* slate-400 */
+  --input-focus: 245 158 11; /* amber-500 */
+  
+  --button-bg: 248 250 252; /* slate-50 */
+  --button-hover: 241 245 249; /* slate-100 */
+  --button-active: 226 232 240; /* slate-200 */
+  
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Dark mode */
+.dark {
+  --bg-page: 17 24 39; /* gray-900 */
+  --bg-panel: 31 41 55; /* gray-800 with opacity */
+  --bg-panel-alt: 55 65 81; /* gray-700 */
+  --border-panel: 55 65 81; /* gray-700 */
+  --border-subtle: 75 85 99; /* gray-600 */
+  
+  --text-primary: 249 250 251; /* gray-50 */
+  --text-secondary: 156 163 175; /* gray-400 */
+  --text-tertiary: 107 114 128; /* gray-500 */
+  
+  --week-lived: 51 65 85; /* slate-700 */
+  --week-remaining: 251 146 60; /* amber-400 */
+  --week-current-ring: 255 255 255; /* white */
+  
+  --number-primary: 251 146 60; /* amber-400 */
+  --number-secondary: 251 146 60; /* amber-400 */
+  
+  --line-expectancy: 239 68 68; /* red-500 */
+  
+  --input-bg: 55 65 81; /* gray-700 */
+  --input-border: 75 85 99; /* gray-600 */
+  --input-focus: 251 146 60; /* amber-400 */
+  
+  --button-bg: 55 65 81; /* gray-700 */
+  --button-hover: 75 85 99; /* gray-600 */
+  --button-active: 31 41 55; /* gray-800 */
+}
+
+@theme inline {
+  --color-background: rgb(var(--bg-page));
+  --color-foreground: rgb(var(--text-primary));
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: rgb(var(--bg-page));
+  color: rgb(var(--text-primary));
   font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Week box classes */
+.week-lived {
+  background-color: rgb(var(--week-lived));
+}
+
+.week-remaining {
+  background-color: rgb(var(--week-remaining));
+}
+
+.week-current {
+  box-shadow: 0 0 0 2px rgb(var(--week-current-ring));
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
